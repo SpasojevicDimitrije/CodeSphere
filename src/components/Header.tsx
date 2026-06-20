@@ -13,7 +13,7 @@ export default function Header() {
             width={36}
             height={36}
             priority
-            className="h-9 w-9 rounded-lg shadow-md shadow-violet-500/30"
+            className="h-9 w-9"
           />
           <span className="text-lg font-bold tracking-tight text-slate-100">CodeSphere</span>
         </Link>

@@ -19,12 +19,13 @@ export default function AuthGate({ children }: { children: React.ReactNode }) {
               <Image
                 src="/logo.png"
                 alt="CodeSphere"
-                width={96}
-                height={96}
+                width={112}
+                height={112}
                 priority
-                className="h-24 w-24 rounded-2xl shadow-lg shadow-violet-500/20"
+                className="h-28 w-28"
               />
-              <p className="mt-3 text-sm text-slate-400">Connect. Share. Code.</p>
+              <span className="mt-2 text-2xl font-bold tracking-tight text-slate-100">CodeSphere</span>
+              <p className="mt-1 text-sm text-slate-400">Connect. Share. Code.</p>
             </div>
           );
         },

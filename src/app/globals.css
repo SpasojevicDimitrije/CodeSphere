@@ -85,6 +85,20 @@ button:not(:disabled),
   color: #64748b;
 }
 
+/* Chrome paints autofilled / autocompleted inputs white via its own
+   `:-webkit-autofill` background, which ignores `background-color`. Override it
+   with the inset box-shadow trick so the field stays dark once an email is filled. */
+[data-amplify-authenticator] .amplify-input:-webkit-autofill,
+[data-amplify-authenticator] .amplify-input:-webkit-autofill:hover,
+[data-amplify-authenticator] .amplify-input:-webkit-autofill:focus,
+[data-amplify-authenticator] .amplify-input:-webkit-autofill:active {
+  -webkit-text-fill-color: #f1f5f9;
+  caret-color: #f1f5f9;
+  -webkit-box-shadow: 0 0 0 1000px #0a0f1e inset;
+  box-shadow: 0 0 0 1000px #0a0f1e inset;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
 [data-amplify-authenticator] .amplify-input:focus {
   border-color: #8B5CF6;
   box-shadow: 0 0 0 1px #8B5CF6;
