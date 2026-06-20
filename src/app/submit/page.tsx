@@ -44,44 +44,44 @@ export default function SubmitPage() {
   }
 
   return (
-    <div className="min-h-full bg-slate-50">
+    <div className="flex flex-1 flex-col">
       <Header />
-      <main className="mx-auto max-w-xl px-4 py-8">
-        <h1 className="text-xl font-bold text-slate-900">Share a link</h1>
-        <p className="mt-1 text-sm text-slate-500">A blog, a GitHub repo, a video — anything worth a developer&apos;s time.</p>
-        <form onSubmit={onSubmit} className="mt-6 flex flex-col gap-4 rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+      <main className="mx-auto w-full max-w-xl flex-1 px-4 py-8">
+        <h1 className="text-xl font-bold text-slate-100">Share a link</h1>
+        <p className="mt-1 text-sm text-slate-400">A blog, a GitHub repo, a video — anything worth a developer&apos;s time.</p>
+        <form onSubmit={onSubmit} className="mt-6 flex flex-col gap-4 rounded-xl border border-white/10 bg-white/5 p-6 shadow-lg backdrop-blur">
           <label className="flex flex-col gap-1">
-            <span className="text-sm font-medium text-slate-700">URL</span>
+            <span className="text-sm font-medium text-slate-300">URL</span>
             <input
               value={url}
               onChange={(e) => setUrl(e.target.value)}
               placeholder="https://…"
-              className="rounded-lg border border-slate-300 px-3 py-2 outline-none focus:border-indigo-500"
+              className="rounded-lg border border-white/10 bg-slate-950/40 px-3 py-2 text-slate-100 placeholder:text-slate-500 outline-none focus:border-violet-500"
             />
           </label>
           <label className="flex flex-col gap-1">
-            <span className="text-sm font-medium text-slate-700">Title</span>
+            <span className="text-sm font-medium text-slate-300">Title</span>
             <input
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="What is it?"
-              className="rounded-lg border border-slate-300 px-3 py-2 outline-none focus:border-indigo-500"
+              className="rounded-lg border border-white/10 bg-slate-950/40 px-3 py-2 text-slate-100 placeholder:text-slate-500 outline-none focus:border-violet-500"
             />
           </label>
           <label className="flex flex-col gap-1">
-            <span className="text-sm font-medium text-slate-700">Tag <span className="text-slate-400">(optional)</span></span>
+            <span className="text-sm font-medium text-slate-300">Tag <span className="text-slate-500">(optional)</span></span>
             <input
               value={tag}
               onChange={(e) => setTag(e.target.value)}
               placeholder="ai, rust, frontend…"
-              className="rounded-lg border border-slate-300 px-3 py-2 outline-none focus:border-indigo-500"
+              className="rounded-lg border border-white/10 bg-slate-950/40 px-3 py-2 text-slate-100 placeholder:text-slate-500 outline-none focus:border-violet-500"
             />
           </label>
-          {error && <p className="text-sm text-red-600">{error}</p>}
+          {error && <p className="text-sm text-red-400">{error}</p>}
           <button
             type="submit"
             disabled={submitting}
-            className="rounded-lg bg-indigo-600 py-2.5 font-semibold text-white transition hover:bg-indigo-700 disabled:opacity-50"
+            className="rounded-lg bg-violet-500 py-2.5 font-semibold text-white transition hover:bg-violet-600 disabled:opacity-50"
           >
             {submitting ? 'Posting…' : 'Post'}
           </button>

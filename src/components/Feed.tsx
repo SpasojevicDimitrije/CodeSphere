@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import PostCard from './PostCard';
 import { getMyId, listFeed, seedSamplePosts } from '@/lib/posts';
 import type { FeedPost } from '@/lib/types';
@@ -9,6 +9,7 @@ export default function Feed({ filterUsername }: { filterUsername?: string }) {
   const [posts, setPosts] = useState<FeedPost[] | null>(null);
   const [myId, setMyId] = useState('');
   const [seeding, setSeeding] = useState(false);
+  const seededRef = useRef(false);
 
   const load = useCallback(async () => {
     const id = await getMyId();
@@ -21,32 +22,35 @@ export default function Feed({ filterUsername }: { filterUsername?: string }) {
     load();
   }, [load]);
 
-  async function onSeed() {
-    setSeeding(true);
-    await seedSamplePosts();
-    await load();
-    setSeeding(false);
-  }
+  // Auto-seed the global feed the first time it's found empty, so every visitor
+  // lands on a populated feed without anyone clicking a button. Never auto-seeds
+  // a profile view (filterUsername), and only attempts once per mount.
+  useEffect(() => {
+    if (filterUsername || seededRef.current) return;
+    if (posts && posts.length === 0) {
+      seededRef.current = true;
+      (async () => {
+        setSeeding(true);
+        try {
+          await seedSamplePosts();
+          await load();
+        } finally {
+          setSeeding(false);
+        }
+      })();
+    }
+  }, [posts, filterUsername, load]);
 
-  if (posts === null) {
-    return <p className="py-12 text-center text-slate-400">Loading feed…</p>;
+  if (posts === null || (seeding && !filterUsername)) {
+    return <p className="py-12 text-center text-slate-500">Loading feed…</p>;
   }
 
   if (posts.length === 0) {
     return (
-      <div className="rounded-xl border border-dashed border-slate-300 py-16 text-center">
-        <p className="text-slate-500">
+      <div className="rounded-xl border border-dashed border-white/15 py-16 text-center">
+        <p className="text-slate-400">
           {filterUsername ? 'No posts here yet.' : 'The feed is empty.'}
         </p>
-        {!filterUsername && (
-          <button
-            onClick={onSeed}
-            disabled={seeding}
-            className="mt-4 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700 disabled:opacity-50"
-          >
-            {seeding ? 'Adding…' : 'Add sample posts'}
-          </button>
-        )}
       </div>
     );
   }
