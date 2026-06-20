@@ -17,7 +17,7 @@ export default function AuthGate({ children }: { children: React.ReactNode }) {
           return (
             <div className="flex flex-col items-center pb-6 pt-8">
               <Image
-                src="/logo.png"
+                src="/logo-v2.png"
                 alt="CodeSphere"
                 width={112}
                 height={112}

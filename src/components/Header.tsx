@@ -8,7 +8,7 @@ export default function Header() {
       <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
         <Link href="/" className="flex items-center gap-2">
           <Image
-            src="/logo.png"
+            src="/logo-v2.png"
             alt="CodeSphere"
             width={36}
             height={36}
