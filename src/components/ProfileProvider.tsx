@@ -70,24 +70,24 @@ function OnboardingForm({ onDone }: { onDone: (p: Profile) => void }) {
 
   return (
     <CenteredMessage>
-      <form onSubmit={submit} className="w-full max-w-sm rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-        <h2 className="text-lg font-bold text-slate-900">Pick a username</h2>
-        <p className="mt-1 text-sm text-slate-500">This is how other developers will see you.</p>
-        <div className="mt-4 flex items-center rounded-lg border border-slate-300 px-3 focus-within:border-indigo-500">
-          <span className="text-slate-400">@</span>
+      <form onSubmit={submit} className="w-full max-w-sm rounded-xl border border-white/10 bg-white/5 p-6 shadow-lg backdrop-blur">
+        <h2 className="text-lg font-bold text-slate-100">Pick a username</h2>
+        <p className="mt-1 text-sm text-slate-400">This is how other developers will see you.</p>
+        <div className="mt-4 flex items-center rounded-lg border border-white/10 bg-slate-950/40 px-3 focus-within:border-violet-500">
+          <span className="text-slate-500">@</span>
           <input
             autoFocus
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             placeholder="ada_lovelace"
-            className="w-full px-2 py-2 outline-none"
+            className="w-full bg-transparent px-2 py-2 text-slate-100 placeholder:text-slate-500 outline-none"
           />
         </div>
-        {error && <p className="mt-2 text-sm text-red-600">{error}</p>}
+        {error && <p className="mt-2 text-sm text-red-400">{error}</p>}
         <button
           type="submit"
           disabled={saving}
-          className="mt-4 w-full rounded-lg bg-indigo-600 py-2 font-semibold text-white transition hover:bg-indigo-700 disabled:opacity-50"
+          className="mt-4 w-full rounded-lg bg-violet-500 py-2 font-semibold text-white transition hover:bg-violet-600 disabled:opacity-50"
         >
           {saving ? 'Saving…' : 'Continue'}
         </button>
